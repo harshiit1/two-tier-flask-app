@@ -5,9 +5,7 @@ pipeline{
     stages{
         stage("Code Clone"){
             steps{
-               script{
-                   clone("https://github.com/harshiit1/two-tier-flask-app.git", "master")
-               }
+                   git url: "https://github.com/harshiit1/two-tier-flask-app.git", branch: "master" 
             }
         }
         stage("Build"){
@@ -37,8 +35,8 @@ pipeline{
         }
         stage("Deploy"){
             steps{
-                sh "docker compose up -d --build two-tier-flask-app"
+                sh "docker compose up -d --build flaskapp"
             }
         }
     }
-
+}
