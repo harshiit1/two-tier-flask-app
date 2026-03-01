@@ -38,4 +38,23 @@ pipeline{
             }
         }
     }
+post {
+    success {
+        echo "SENDING EMAIL"
+            emailext (
+                to: 'harshitb2k@gmail.com',
+                subject: "The build was Successfull",
+                body: "The build Succedded."
+            )
+
+        echo "EMAIL SENT"
+    }
+    failure {
+        emailext (
+                to: 'harshitb2k@gmail.com',
+                subject: "The build was Failed",
+                body: "The build failed."
+            )
+        }
+    }
 }
